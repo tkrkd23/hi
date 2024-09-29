@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>네이버 블로그 서로이웃 자동화</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            font-size: 12px;
+            margin: 0;
+            padding: 20px;
+            background-color: #f0f0f0;
+        }
+        .container {
+            display: flex;
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 5px;
+            overflow: hidden;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .left-frame, .right-frame {
+            flex: 1;
+            padding: 20px;
+        }
+        .right-frame {
+            background-color: #2C3E50;
+            color: white;
+        }
+        label {
+            font-weight: bold;
+            display: block;
+            margin-top: 10px;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 5px;
+            margin-top: 5px;
+            border: 1px solid #BDC3C7;
+            border-radius: 3px;
+        }
+        textarea {
+            height: 100px;
+            resize: vertical;
+        }
+        button {
+            background-color: #3498DB;
+            color: white;
+            padding: 8px 15px;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        button:hover {
+            background-color: #2980B9;
+        }
+        #status-display {
+            background-color: #34495E;
+            color: white;
+            border: none;
+            padding: 10px;
+            height: 200px;
+            overflow-y: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="left-frame">
+            <h2>입력</h2>
+            <label for="nickname">닉네임</label>
+            <input type="text" id="nickname" placeholder="닉네임을 입력하세요">
+
+            <label for="naver-id">네이버 ID</label>
+            <input type="text" id="naver-id" placeholder="네이버 ID를 입력하세요">
+
+            <label for="password">비밀번호</label>
+            <input type="password" id="password" placeholder="비밀번호를 입력하세요">
+
+            <label for="start-id">시작 블로그 ID</label>
+            <input type="text" id="start-id" placeholder="시작 블로그 ID를 입력하세요">
+
+            <label for="custom-message">이웃 추가 메시지</label>
+            <textarea id="custom-message" placeholder="이웃 추가 메시지를 입력하세요"></textarea>
+
+            <button onclick="checkUser()">실행</button>
+            <button onclick="refreshData()">새로고침</button>
+        </div>
+        <div class="right-frame">
+            <h2>작업 진행 상태창</h2>
+            <div id="status-display"></div>
+        </div>
+    </div>
+
+    <script>
+        function checkUser() {
+            const nickname = document.getElementById('nickname').value;
+            if (nickname === "") {
+                alert('닉네임을 입력해주세요.');
+            } else {
+                // Here you would typically make an AJAX call to check the user
+                // For demo purposes, we'll just simulate a successful check
+                startProcess();
+            }
+        }
+
+        function startProcess() {
+            const statusDisplay = document.getElementById('status-display');
+            statusDisplay.innerHTML += "프로세스 시작...<br>";
+            // Here you would typically start the actual process
+            // For demo purposes, we'll just add some example status updates
+            setTimeout(() => { statusDisplay.innerHTML += "사용자 로그인 중...<br>"; }, 1000);
+            setTimeout(() => { statusDisplay.innerHTML += "블로그 목록 가져오는 중...<br>"; }, 2000);
+            setTimeout(() => { statusDisplay.innerHTML += "이웃 추가 진행 중...<br>"; }, 3000);
+            setTimeout(() => { statusDisplay.innerHTML += "프로세스 완료<br>"; }, 4000);
+        }
+
+        function refreshData() {
+            const statusDisplay = document.getElementById('status-display');
+            statusDisplay.innerHTML += "사용자 데이터가 새로고침되었습니다.<br>";
+        }
+    </script>
+</body>
+</html>
